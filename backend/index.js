@@ -1,7 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const app = express();
-
+/*
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -19,3 +19,10 @@ con.connect((err)=>{
         console.log("Result: " + result);
     });
 })
+*/
+
+app.post('/:date/:time', (req, res)=>{
+    res.sendStatus(200)
+})
+
+app.listen(5000)
