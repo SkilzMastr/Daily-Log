@@ -6,8 +6,8 @@ const axios = require('axios');
 export default class App extends Component {
 
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.showerRef = React.createRef();
     this.dateRef = React.createRef();
     this.state = {
@@ -16,7 +16,10 @@ export default class App extends Component {
   }
 
   res = ()=>{
-    axios.post("http://localhost:5000/"+this.dateRef.current.value+'/'+this.showerRef.current.value).then((response)=>{
+    axios.post("http://localhost:5000/entry", {
+      date: this.dateRef.current,
+      showerTime: this.showerRef.current
+    }).then((response)=>{
       this.setState({confirm: response})
     })
   }
@@ -26,10 +29,10 @@ export default class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <form>
+          <form onSubmit={this.res}>
             <input ref="{this.showerRef}" type="number" min="4" max="10" placeholder="5"/>
             <input ref="{this.dateRef}" type="date" name="Date"/>
-            <button type="reset" onClick={this.res} id="submit">Submit</button>
+            <button type="submit" id="submit">Submit</button>
           </form>
           <p>{this.state.confirm}</p>
         </header>

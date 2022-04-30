@@ -21,8 +21,10 @@ con.connect((err)=>{
 })
 */
 
-app.post('/:date/:time', (req, res)=>{
+app.post('/entry', (req, res)=>{
+    console.log("REQ ")
     res.sendStatus(200)
 })
 
+console.log("listening")
 app.listen(5000)
